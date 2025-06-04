@@ -1,0 +1,76 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: main
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/eth-cscs/firecrest:
+      branch: master
+      repo: https://github.com/eth-cscs/firecrest
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/eth-cscs/firecrest git:
+        commands:
+        - /usr/bin/env sh .sqa/script.gamy-brass-hyena.sh
+        container: qc.acc_paltry-wheat-hummingbird
+  QC.Doc:
+    repos:
+      github.com/eth-cscs/firecrest find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.lovely-myrtle-panda.sh
+        container: qc.doc_squeaky-scarlet-grouse
+      github.com/eth-cscs/firecrest git:
+        commands:
+        - /usr/bin/env sh .sqa/script.muzzy-scarlet-baboon.sh
+        container: qc.doc_slimy-turquoise-shrimp
+      github.com/eth-cscs/firecrest markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.crappy-mustard-chinchilla.sh
+        container: qc.doc_whiny-platinum-squid
+      github.com/eth-cscs/firecrest restructuredtext-lint:
+        commands:
+        - /usr/bin/env sh .sqa/script.snazzy-teal-wolverine.sh
+        container: qc.doc_shaky-firebrick-forest
+  QC.Lic:
+    repos:
+      github.com/eth-cscs/firecrest licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.stealthy-smalt-snake.sh
+        container: qc.lic_ugly-ecru-squid
+  QC.Sec:
+    repos:
+      github.com/eth-cscs/firecrest bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.wheezy-malachite-uakari.sh
+        container: qc.sec_jumpy-zucchini-havanese
+  QC.Sty:
+    repos:
+      github.com/eth-cscs/firecrest flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.hasty-wheat-mule.sh
+        container: qc.sty_shaggy-alizarin-ferret
+      github.com/eth-cscs/firecrest hadolint:
+        commands:
+        - /usr/bin/env sh .sqa/script.sleepy-thistle-dingo.sh
+        container: qc.sty_clammy-zucchini-maltese
+      github.com/eth-cscs/firecrest jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.slaphappy-buff-beaver.sh
+        container: qc.sty_shaky-cinnabar-lemur
+  QC.Uni:
+    repos:
+      github.com/eth-cscs/firecrest pytest:
+        commands:
+        - /usr/bin/env sh .sqa/script.frumpy-cream-kiwi.sh
+        container: qc.uni_zippy-lavender-squid
+  QC.Ver:
+    repos:
+      github.com/eth-cscs/firecrest get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.lanky-emerald-drever.sh
+        container: qc.ver_crappy-amethyst-ragdoll
+timeout: 5400
